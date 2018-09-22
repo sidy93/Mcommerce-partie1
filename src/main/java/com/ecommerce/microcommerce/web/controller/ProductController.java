@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.web.bind.annotation.*;
@@ -117,10 +118,13 @@ return  null
         ;
 
     }
-    public  Product trierProduitsParOrdreAlphabetique()
+    @GetMapping(value = "/TrierProduit")
+    public  Iterable<Product> trierProduitsParOrdreAlphabetique()
     {
-        return null;
-    }
+        //return productDao.findAll(new Sort(Sort.Direction.DESC,"nom"));
+        return productDao.findProductByOrderByNomAsc();
+
+}
 
 
 }
